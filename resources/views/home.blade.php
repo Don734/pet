@@ -8,11 +8,11 @@
         <!-- Hero -->
         <div class="relative" x-data="{ query: '', isFocused: false }">
             <div class="max-w-[85rem] mx-auto sm:px-2 lg:px-4 sm:py-2 relative">
-                <h1 class="text-xl sm:text-3xl md:text-5xl px-4 mt-5 md:mt-10 font-bold text-neutral-800 leading-normal w-full">
+                <h1 class="text-xl sm:text-2xl md:text-5xl px-4 mt-5 md:mt-10 font-bold text-neutral-800 leading-normal w-full">
                     Услуги и товары для животных в одном месте
                 </h1>
                 <div class="fixed h-screen w-screen top-0 left-0 z-50 bg-black opacity-50" x-show="isFocused" x-cloak></div>
-                <div class="sm:mt-2 w-full p-4 bg-white rounded-2xl relative z-50">
+                <div class="sm:mt-2 w-full px-4 pt-4 bg-white rounded-2xl relative z-50">
                     <form hx-target="_top" action="{{ route('search') }}" method="GET">
                         @csrf
                         <div class="relative z-10 flex space-x-3 bg-white justify-center items-center">
@@ -35,7 +35,7 @@
                                     <img src="{{ asset('images/assets/icons/clear.svg') }}" alt="clear">
                                 </span>
                                 <button :disabled="!query.trim()" class="flex-[1_0%]" type="submit" hx-boost="true">
-                                    <div :class="{ 'bg-gray-400': !query.trim(), 'hover:bg-gray-500': !query.trim(), 'bg-lime-600': query.trim(), 'hover:bg-lime-700': query.trim() }" class="px-4 py-3 inline-flex justify-center items-center gap-2 rounded-full border border-transparent font-semibold text-neutral-900 focus:outline-none focus:ring-2 focus:ring-lime-700 focus:ring-offset-2 transition-all text-base leading-normal">
+                                    <div :class="{ 'bg-gray-400': !query.trim(), 'hover:bg-gray-500': !query.trim(), 'bg-lime-600': query.trim(), 'hover:bg-lime-700': query.trim() }" class="px-4 py-2 inline-flex justify-center items-center gap-2 rounded-full border border-transparent font-semibold text-neutral-900 focus:outline-none focus:ring-2 focus:ring-lime-700 focus:ring-offset-2 transition-all text-base leading-normal">
                                         Найти
                                     </div>
                                 </button>
@@ -53,8 +53,8 @@
         </div>
         <!-- End Hero -->
 
-        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
-            <p class="text-xl sm:text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-3/4 sm:mt-3 sm:py-5 pb-5">
+        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
+            <p class="font-bold text-neutral-800 md:text-2xl md:leading-tight w-3/4 pb-5">
                 Каталог
             </p>
             @if ($categories->where('card_type', 'rectangle')->where('on_main', 1)->count() === 9)
@@ -74,7 +74,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 2 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(2)->take(1) as $category)
@@ -84,7 +84,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 3 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(3)->take(1) as $category)
@@ -99,7 +99,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 4 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(5)->take(1) as $category)
@@ -108,7 +108,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 5 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(6)->take(1) as $category)
@@ -124,7 +124,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 6 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(8)->take(1) as $category)
@@ -184,7 +184,7 @@
                         </a>
                     @endforeach
                 </div>
-                
+
                 <!-- 4 столбец -->
                 <div class="flex flex-wrap col-span-1 content-between">
                     @foreach($categories->where('card_type', 'rectangle')->where('on_main', 1)->skip(6)->take(1) as $category)
@@ -315,8 +315,8 @@
             @endif
         </div>
 
-        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
-            <p class="text-xl sm:text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-3/4 sm:mt-3 sm:py-5 pb-5">
+        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
+            <p class="font-bold text-neutral-800 md:text-2xl md:leading-tight w-3/4 sm:py-5 pb-5">
                 Услуги и товары по видам животных
             </p>
             <div class="grid gap-5 grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1">
@@ -346,7 +346,7 @@
 
         @if($categories->count())
         <!-- Card Section -->
-            <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
+            <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
                 <p class="text-xl sm:text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-full sm:w-3/4 sm:mt-3 sm:py-5 pb-5">
                     Популярные услуги для животных
                 </p>
@@ -414,7 +414,7 @@
                                                                     <img src="{{ asset('images/assets/icons/star-white.svg') }}" alt="">
                                                                 </div>
                                                             @elseif ($handbook->reviews->avg('rating') < 4)
-                                                                <div class="flex w-full mt-2.5">    
+                                                                <div class="flex w-full mt-2.5">
                                                                     <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
                                                                     <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
                                                                     <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
@@ -544,7 +544,7 @@
         @endif
 
         <!-- Card Section -->
-        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
+        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
             <!-- Grid -->
             <div class="grid sm:grid-cols-4">
                 <!-- Card -->
@@ -628,7 +628,7 @@
         </div>
         <!-- End Card Section -->
 
-        <!-- <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
+        <!-- <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
             <div class="grid md:grid-cols-5 gap-10">
                 <div class="md:col-span-2">
                     <img class="rounded-xl" src="{{ asset('images/assets/images/banner2.webp') }}" alt="banner_image">
@@ -669,7 +669,7 @@
 
         <!-- FAQ -->
         <!-- <div class="bg-amber-50">
-            <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 lg:py-6 mx-auto">
+            <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
                 <h2 class="text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-full">Последние отзывы о zooBzoo</h2>
 
                 <div class="grid md:grid-cols-6 gap-10">

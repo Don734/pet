@@ -15,22 +15,22 @@
                     @if($handbook->getMedia('images')->isNotEmpty())
                         <div class="flex overflow-x-auto gallery gap-2 pb-2">
                             @foreach($handbook->getMedia('images') as $index => $image)
-                                <img 
-                                    class="w-24 h-14 object-cover object-center rounded-md" 
-                                    :src="'{{ $image->getUrl('thumb') }}'" 
+                                <img
+                                    class="w-24 h-14 object-cover object-center rounded-md"
+                                    :src="'{{ $image->getUrl('thumb') }}'"
                                     alt="Заведение"
                                     x-on:click="selectedImage = '{{ $image->getUrl() }}'"
                                 >
                             @endforeach
                         </div>
                         <div class="flex justify-center mt-4 mb-7 relative overflow-hidden">
-                            <div 
+                            <div
                                 class="absolute inset-0 bg-cover bg-center rounded-md"
                                 x-bind:class="{ 'filter blur': selectedImage !== null }"
                                 :style="{ 'background-image': selectedImage ? 'url(' + selectedImage + ')' : 'none' }"
                             ></div>
                             <template x-if="selectedImage !== null">
-                                <img 
+                                <img
                                     class="w-full max-w-full max-h-96 h-auto object-contain rounded-md relative z-10"
                                     :src="selectedImage"
                                     alt="Заведение"
@@ -207,7 +207,7 @@
                     <div class="flex flex-wrap xl:flex-nowrap justify-between mt-4 mb-16">
                         <button href="#" class="flex w-full border disabled:bg-gray-200 disabled:border-gray-500 border-lime-600 py-2.5 px-3 ml-2.5 text-sm text-gray-800 font-semibold rounded-lg hover:bg-lime-100 hover:transition-all hover:duration-500 focus:outline-none focus:ring-2 focus:ring-lime-600 justify-center items-center" title="Находится в разработке" disabled>Забронировать</button>
                     </div>
-                {{-- @endif --}} --> 
+                {{-- @endif --}} -->
                 <div class="flex max-[768px]:mt-8 justify-between">
                     <div>
                     @if(empty($handbook->client_id) or str_contains($handbook->client->name, 'user'))
@@ -268,7 +268,7 @@
                             <span class="text-sm text-gray-500 ml-2.5 mb-1">{{ $handbook->reviews->count() }} @if ($handbook->reviews->count()%10 == 1 and $handbook->reviews->count()%100 != 11)отзыв @elseif ($handbook->reviews->count()%10 >= 2 and $handbook->reviews->count()%10 <= 4 and $handbook->reviews->count()%100 != 12 and $handbook->reviews->count()%100 != 13 and $handbook->reviews->count()%100 != 14)отзыва @else отзывов @endif</span>
                         </div>
                     @elseif ($handbook->reviews->avg('rating') < 4)
-                        <div class="flex w-full mt-2.5">    
+                        <div class="flex w-full mt-2.5">
                             <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
                             <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
                             <img class="mr-1" src="{{ asset('images/assets/icons/star-green.svg') }}" alt="">
@@ -483,7 +483,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="w-full mt-5">
                     <p class="text-base font-medium text-gray-500">{{ $handbook->address }}</p>
                     <!-- <div class="flex mt-1.5 items-center">
@@ -559,7 +559,25 @@
                             <p class="text-lg font-bold">{{ optional($handbook->reviews->last())->name }}</p>
                         </div>
                     <p class="mt-1.5 text-base font-medium text-gray-500">{{ optional($handbook->reviews->last())->comment }}</p>
-                    <a href="#" class="flex w-fit border border-gray-200 py-2.5 px-3 mt-1.5 text-sm text-gray-800 font-semibold rounded-lg hover:bg-lime-100 hover:transition-all hover:duration-500 focus:outline-none focus:ring-2 focus:ring-lime-600 justify-center items-center">Читать все отзывы</a>
+                    <div x-data="{ isOpen: false }">
+                        <div @click="isOpen = !isOpen" class="flex w-fit border cursor-pointer border-gray-200 py-2.5 px-3 mt-1.5 text-sm text-gray-800 font-semibold rounded-lg hover:bg-lime-100 hover:transition-all hover:duration-500 focus:outline-none focus:ring-2 focus:ring-lime-600 justify-center items-center">Читать все отзывы</div>
+                        <div class="fixed px-4 inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-50" x-show="isOpen">
+                            <div class="relative bg-white px-8 py-12 rounded-2xl max-w-[85rem] max-h-[85dvh] w-full h-full mt-14" @click.away="isOpen = false;">
+                                <div class="text-xl font-bold">Отзывы:</div>
+                                <div class="grid space-y-6">
+                                    @foreach($handbook->reviews as $review)
+                                        <div class="w-full border-b py-5 mt-5">
+                                            <div class="flex">
+                                                <img class="mr-1.5" src="{{ asset('images/assets/icons/avatar.svg') }}" alt="">
+                                                <p class="text-lg font-bold">{{ $review->name }}</p>
+                                            </div>
+                                            <p class="mt-1.5 text-base font-medium text-gray-500">{{ $review->comment }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @else
                     @if($handbook->reviews()->publishedAndUnpublished()->count() == 0)
                         <p class="mt-6 text-xl font-bold">Отзывов нет</p>
