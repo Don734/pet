@@ -8,8 +8,8 @@
         <!-- Hero -->
         <div class="relative" x-data="{ query: '', isFocused: false }">
             <div class="max-w-[85rem] mx-auto sm:px-2 lg:px-4 sm:py-2 relative">
-                <h1 class="text-xl sm:text-2xl md:text-5xl px-4 mt-5 md:mt-10 font-bold text-neutral-800 leading-normal w-full">
-                    Услуги и товары для животных в одном месте
+                <h1 class="md:text-2xl px-4 mt-5 md:mt-10 font-bold text-neutral-800 leading-normal w-full">
+                    Услуги и товары для животных
                 </h1>
                 <div class="fixed h-screen w-screen top-0 left-0 z-50 bg-black opacity-50" x-show="isFocused" x-cloak></div>
                 <div class="sm:mt-2 w-full px-4 pt-4 bg-white rounded-2xl relative z-50">
@@ -40,11 +40,6 @@
                                     </div>
                                 </button>
                             </div>
-                        </div>
-                        <div class="flex flex-wrap mt-5">
-                        @foreach($tags as $tag)
-                            <div class="flex justify-center bg-gray-100 hover:bg-lime-50 hover:transition-all hover:duration-500 border border-transparent hover:border-lime-600 text-sm font-bold leading-normal mr-4 mb-2 p-2 rounded-md cursor-pointer" hx-post="{{ route('search.autocomplete') }}" hx-trigger="click" hx-target="#search-results" @click="query = '{{ $tag->name }}', isFocused = true">{{ $tag->name }}</div>
-                        @endforeach
                         </div>
                     </form>
                     <div id="search-results" class="mt-2" x-show="query !== ''" x-cloak></div>
@@ -315,10 +310,7 @@
             @endif
         </div>
 
-        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
-            <p class="font-bold text-neutral-800 md:text-2xl md:leading-tight w-3/4 sm:py-5 pb-5">
-                Услуги и товары по видам животных
-            </p>
+        <div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto">
             <div class="grid gap-5 grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1">
                 @foreach($categories->where('card_type', 'round')->where('on_main', 1) as $category)
                     <a class="text-center" href="{{ route('categories.show', $category->slug) }}">
@@ -338,7 +330,6 @@
                                 <rect width="415" height="415" rx="207.5" fill="#D9D9D9"/>
                             </svg>
                         @endif
-                        <span class="text-base text-gray-500 font-normal">{{ $category->name }}</span>
                     </a>
                 @endforeach
             </div>

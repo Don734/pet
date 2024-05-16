@@ -40,8 +40,8 @@ class HandbooksController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $data['client_id'] = auth('users')->id();
-
         $handbook = Handbook::create($data);
+        dd($handbook);
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 $handbook->addMedia($file)->toMediaCollection('images');

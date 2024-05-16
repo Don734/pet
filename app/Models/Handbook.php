@@ -38,7 +38,8 @@ class Handbook extends Model implements HasMedia
         'client_id',
         'slug',
         'tags',
-        'popular'
+        'popular',
+        'category_id',
     ];
 
     public function registerMediaConversions(Media $media = null): void
