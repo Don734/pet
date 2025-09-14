@@ -20,9 +20,11 @@
                 <h4 class="font-semibold text-gray-100">Категории</h4>
 
                 <div class="mt-3 grid space-y-3">
-                    @foreach($categories as $category)
-                        <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 hover:transition-all hover:duration-500" href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></p>
-                    @endforeach
+                    @if (count($categories))
+                        @foreach($categories as $category)
+                            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 hover:transition-all hover:duration-500" href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <!-- End Col -->
@@ -31,9 +33,11 @@
                 <h4 class="font-semibold text-gray-100">Животные</h4>
 
                 <div class="mt-3 grid space-y-3">
-                    @foreach($animals as $animal)
-                        <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 hover:transition-all hover:duration-500" href="{{ route('categories.show', $animal->slug) }}">{{ $animal->name }}</a></p>
-                    @endforeach
+                    @if (count($animals))
+                        @foreach($animals as $animal)
+                            <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 hover:transition-all hover:duration-500" href="{{ route('categories.show', $animal->slug) }}">{{ $animal->name }}</a></p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <!-- End Col -->
