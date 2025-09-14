@@ -48,7 +48,7 @@
         </div>
         <!-- End Hero -->
 
-        <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
+        <div class="max-w-[85rem] px-4 pt-3 sm:px-6 lg:px-8 mx-auto">
             <p class="font-bold text-neutral-800 md:text-2xl md:leading-tight w-3/4 pb-5">
                 Каталог
             </p>
@@ -310,7 +310,7 @@
             @endif
         </div>
 
-        <div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto">
+        <div class="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 mx-auto">
             <div class="grid gap-5 grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1">
                 @foreach($categories->where('card_type', 'round')->where('on_main', 1) as $category)
                     <a class="text-center" href="{{ route('categories.show', $category->slug) }}">
@@ -337,8 +337,8 @@
 
         @if($categories->count())
         <!-- Card Section -->
-            <div class="max-w-[85rem] px-4 py-3 sm:px-6 lg:px-8 mx-auto">
-                <p class="text-xl sm:text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-full sm:w-3/4 sm:mt-3 sm:py-5 pb-5">
+            <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
+                <p class="text-xl sm:text-2xl font-bold text-neutral-800 md:text-4xl md:leading-tight w-full sm:w-3/4 sm:py-3 pb-3">
                     Популярные услуги для животных
                 </p>
                 <!-- Grid -->
