@@ -20,6 +20,7 @@
                 <h4 class="font-semibold text-gray-100">Категории</h4>
 
                 <div class="mt-3 grid space-y-3">
+                    @dd($categories)
                     @if (count($categories))
                         @foreach($categories as $category)
                             <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200 hover:transition-all hover:duration-500" href="{{ route('categories.show', $category->slug) }}">{{ $category->name }}</a></p>
